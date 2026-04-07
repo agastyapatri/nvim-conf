@@ -1,0 +1,22 @@
+{
+	"comment_block" : {
+		"prefix" : "checkpoint",
+		"body" : ["#----------------------------------------------#", "#	#", "#----------------------------------------------#"],
+		"description" : "Comment block for non-docstring comments"
+	},
+	"time_code_block" : {
+		"prefix" : "timer",
+		"body" : ["import timeit", "start = timeit.default_timer()", "end = timeit.default_timer()", "print(end - start)"],
+		"description" : "timing code snippets"
+	},
+	"function body" : {
+		"prefix" : "genfunc",
+		"body" : ["def function(args: type) -> type:", "\tpass"],
+		"description" : "generating a function prototype"
+	},
+	"class body" : {
+		"prefix" : "genclass",
+		"body" : ["class classname:", "\tdef __init__(self, args:type) -> None:", "\t\tpass"],
+		"description" : "class prototype"
+	}
+}

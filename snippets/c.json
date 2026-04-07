@@ -1,0 +1,13 @@
+{
+	"comment_block" : {
+		"prefix" : "checkpoint",
+		"body" : ["/********************************************", "********************************************/"],
+		"description" : "Comment block for non-docstring comments"
+	},
+	"function_prototype" : {
+		"prefix" : "genfunc",
+		"body" : ["type function(type args){", "\treturn", "}"],
+		"description" : "boilerplate code for a function"
+	}
+}
+

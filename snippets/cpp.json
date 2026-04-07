@@ -1,0 +1,8 @@
+{
+	"comment_block" : {
+		"prefix" : "checkpoint",
+		"body" : ["/********************************************", "********************************************/"],
+		"description" : "Comment block for non-docstring comments"
+	}
+}
+
