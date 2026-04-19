@@ -1,7 +1,6 @@
 return {
 	{
-		"mason-org/mason.nvim"
-	},
+		"mason-org/mason.nvim" },
 	{	
 		'tpope/vim-fugitive',
 		event = 'VeryLazy',
@@ -223,10 +222,10 @@ return {
 
 
 	{
-	  "hat0uma/csvview.nvim",
-	  ---@module "csvview"
-	  ---@type CsvView.Options
-	  opts = {
+		"hat0uma/csvview.nvim",
+		---@module "csvview"
+		---@type CsvView.Options
+		opts = {
 		parser = { comments = { "#", "//" } },
 		keymaps = {
 		  -- Text objects for selecting fields
@@ -241,8 +240,25 @@ return {
 		  jump_next_row = { "<Enter>", mode = { "n", "v" } },
 		  jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
 		},
-	  },
-	  cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+		},
+		cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+		},
+
+	{
+		"folke/snacks.nvim", 
+		---@type snacks.Config
+		opts = {
+			notifier = {
+				timeout = 1500,
+				width = {min = 40, max = 0.4},
+				height= {min = 1, max = 0.6},
+				margin = {top = 0, right = 1, bottom = 0},
+				gap = 0, 
+				soft = {"level", "added"},
+				border = true, 
+				ft = "markdown", 
+			},
+		},
 	},
 
 }

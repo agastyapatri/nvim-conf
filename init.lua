@@ -110,7 +110,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'LSP Code Actions' })
 
 -- ENABLING LSP SERVERS ; TAKE A LOOK AT ~/.CONFIG/NVIM/LSP FOR MORE INFO 
-vim.lsp.enable({'clangd', 'basedpyright', 'lua_ls', 'marksman'})
+vim.lsp.enable({'clangd', 'basedpyright', 'lua_ls', 'marksman', 'neocmakelsp'})
 --	HIGHLIGHT ON YANK
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
