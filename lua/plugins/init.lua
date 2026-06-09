@@ -23,13 +23,6 @@ return {
 		priority = 1000,
 		opts = {},
 	},
-	-- {
-	-- 	'f4z3r/gruvbox-material.nvim',
-	-- 	-- name = 'gruvbox-material',
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	opts = {},
-	-- },
 	{	
 		"catppuccin/nvim",
 		name="catppuccin",
@@ -53,14 +46,28 @@ return {
 		config = true,
 
 	},
+
+
+	-- {
+	-- 	"nvim-tree/nvim-tree.lua",
+	-- 	version = "*",
+	-- 	lazy = true, 
+	-- 	dependencies = {
+	-- 		"nvim-tree/nvim-web-devicons",
+	-- 	}
+	-- },
 	{
-		"nvim-tree/nvim-tree.lua",
-		version = "*",
-		lazy = true, 
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
 		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		}
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			"nvim-tree/nvim-web-devicons", -- optional, but recommended
+		},
+		lazy = false, -- neo-tree will lazily load itself
 	},
+
+
 	{
 		'nvim-lualine/lualine.nvim',
 		enabled = true, 
@@ -110,24 +117,16 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	{
-		'nvim-telescope/telescope.nvim',
-		event = 'InsertEnter',
-		branch = '0.1.x',
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			-- Fuzzy Finder Algorithm which requires local dependencies to be built.
-			-- Only load if `make` is available. Make sure you have the system
-			-- requirements installed.
-			{
-				'nvim-telescope/telescope-fzf-native.nvim',
-				-- NOTE: If you are having trouble with this installation,
-				--       refer to the README for telescope-fzf-native for more instructions.
-				build = 'make',
-				cond = function()
-					return vim.fn.executable 'make' == 1
-				end,
-			},
-		},
+		"ibhagwan/fzf-lua",
+		-- optional for icon support
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		-- or if using mini.icons/mini.nvim
+		-- dependencies = { "nvim-mini/mini.icons" },
+		---@module "fzf-lua"
+		---@type fzf-lua.Config|{}
+		---@diagnostic disable: missing-fields
+		opts = {}
+		---@diagnostic enable: missing-fields
 	},
 	{
 		'nvim-treesitter/nvim-treesitter',

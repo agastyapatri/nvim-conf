@@ -26,6 +26,7 @@ vim.opt.shell = "/bin/bash"
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set('n', '<C-z>', '<Nop>', { noremap = true, silent = true })
 
 
 -- DISABLING UNUSED BUILTINS 
@@ -76,17 +77,12 @@ require('lazy').setup({
 require("configs.retrobox")
 require("configs.treesitter")
 require("configs.toggleterm")
-require("configs.telescope")
-require("configs.nvim-tree")
+require("configs.fzf-lua")
+-- require("configs.nvim-tree")
+require("configs.neotree")
 require("configs.noice")
 require("configs.mason")
--- require("configs.trouble")
--- require("configs.catppuccin")
 
-
--- local kanso_zen_red = "#c4746e"
--- local kanso_zen_black = "#0d060c"
--- vim.api.nvim_set_hl(0, "LazyBorder", {fg = kanso_zen_red, bg = kanso_zen_black})
 
 --	KEYMAPS: tabs and splits
 vim.keymap.set({"n", "v", "i"}, "<C-n>", vim.cmd.tabnew)
@@ -105,12 +101,42 @@ vim.diagnostic.config({
 		border = 'rounded',
 	},
 })
+
+
+
+
+
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'LSP Code Actions' })
 
 -- ENABLING LSP SERVERS ; TAKE A LOOK AT ~/.CONFIG/NVIM/LSP FOR MORE INFO 
-vim.lsp.enable({'clangd', 'basedpyright', 'lua_ls', 'marksman', 'neocmakelsp'})
+vim.lsp.enable({'clangd', 'basedpyright', 'lua_ls', 'marksman', 'neocmakelsp', 'ruff'})
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.py",
+    callback = function()
+        vim.lsp.buf.format({ name = "ruff" })  -- format only, via ruff
+    end,
+})
+vim.keymap.set("n", "<leader>rf", function()
+    vim.lsp.buf.code_action({
+        context = { only = { "source.fixAll.ruff" } },
+        apply = true,
+    })
+end)
+
+vim.keymap.set("n", "<leader>ri", function()
+    vim.lsp.buf.code_action({
+        context = { only = { "source.organizeImports.ruff" } },
+        apply = true,
+    })
+end)
+
+
+
+
+
+
 --	HIGHLIGHT ON YANK
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {

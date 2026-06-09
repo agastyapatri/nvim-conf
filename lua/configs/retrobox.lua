@@ -24,3 +24,4 @@ vim.g.terminal_color_12 = "#83a598"  -- bright blue
 vim.g.terminal_color_13 = "#d3869b"  -- bright magenta
 vim.g.terminal_color_14 = "#8ec07c"  -- bright cyan
 vim.g.terminal_color_15 = "#ebdbb2"  -- bright white
+
