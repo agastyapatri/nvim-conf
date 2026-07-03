@@ -111,7 +111,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'LSP Code Actions' })
 
 -- ENABLING LSP SERVERS ; TAKE A LOOK AT ~/.CONFIG/NVIM/LSP FOR MORE INFO 
-vim.lsp.enable({'clangd', 'basedpyright', 'lua_ls', 'marksman', 'neocmakelsp', 'ruff'})
+vim.lsp.enable({'clangd', 'basedpyright', 'lua_ls', 'marksman', 'neocmakelsp', 'ruff', 'jsonls'})
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.py",
     callback = function()
