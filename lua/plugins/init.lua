@@ -130,6 +130,7 @@ return {
 	},
 	{
 		'nvim-treesitter/nvim-treesitter',
+		branch = "main",
 		event = "VeryLazy",
 		dependencies = {
 			'nvim-treesitter/nvim-treesitter-textobjects',
@@ -248,7 +249,7 @@ return {
 		---@type snacks.Config
 		opts = {
 			notifier = {
-				timeout = 1500,
+				timeout = 2000,
 				width = {min = 40, max = 0.4},
 				height= {min = 1, max = 0.6},
 				margin = {top = 0, right = 1, bottom = 0},

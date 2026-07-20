@@ -10,6 +10,7 @@ vim.wo.number = true
 vim.o.mouse = 'a'
 vim.o.clipboard = 'unnamedplus'
 vim.o.breakindent = true
+vim.o.winborder = 'rounded'
 vim.o.cindent = true 
 vim.g.c_syntax_for_h = 1
 vim.o.undofile = true
@@ -104,14 +105,12 @@ vim.diagnostic.config({
 
 
 
-
-
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'LSP Code Actions' })
 
 -- ENABLING LSP SERVERS ; TAKE A LOOK AT ~/.CONFIG/NVIM/LSP FOR MORE INFO 
-vim.lsp.enable({'clangd', 'basedpyright', 'lua_ls', 'marksman', 'neocmakelsp', 'ruff', 'jsonls'})
+vim.lsp.enable({'clangd', 'lua_ls', 'marksman', 'neocmakelsp', 'ruff',  'ty', 'taplo', 'yamlls', 'jsonls'})
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.py",
     callback = function()
@@ -131,9 +130,18 @@ vim.keymap.set("n", "<leader>ri", function()
         apply = true,
     })
 end)
+vim.lsp.handlers["$/progress"] = function() end
 
 
-
+--	Measuring LSP startup time 
+local start_time = vim.loop.hrtime()
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local elapsed_ms = (vim.loop.hrtime() - start_time) / 1e6
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    print(string.format("LSP '%s' attached in: %.2f ms", client.name, elapsed_ms))
+  end,
+})
 
 
 

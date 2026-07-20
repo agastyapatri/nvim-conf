@@ -7,6 +7,7 @@ require("noice").setup({
 			["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
 		},
 	},
+	hover = {enabled = true},
 	message = {
 		enabled = true, 
 		view = "notify",
@@ -38,19 +39,3 @@ vim.api.nvim_create_autocmd({ 'RecordingEnter', 'RecordingLeave' }, {
 		})
 	end,
 })
-
-
-
-
-
--- vim.api.nvim_set_hl(0, "NoiceCmdline", {
--- 	gui = "bold"
--- })
--- vim.api.nvim_set_hl(0, "TelescopePromptTitle", {
--- 	bg = kanso_zen_black,
--- 	fg = kanso_zen_red,
--- })
--- vim.api.nvim_set_hl(0, "TelescopeResultsTitle", {
--- 	bg = kanso_zen_black,
--- 	fg = kanso_zen_red,
--- })
