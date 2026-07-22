@@ -131,11 +131,42 @@ return {
 	{
 		'nvim-treesitter/nvim-treesitter',
 		branch = "main",
-		event = "VeryLazy",
-		dependencies = {
-			'nvim-treesitter/nvim-treesitter-textobjects',
-		},
 		build = ':TSUpdate',
+		init = function()
+			vim.api.nvim_create_autocmd('FileType', { 
+				callback = function() 
+					-- Enable treesitter highlighting and disable regex syntax
+					pcall(vim.treesitter.start) 
+					-- Enable treesitter-based indentation
+					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" 
+				end, 
+			}) 
+			local ensureinstalled = {"lua", "c", "cpp", "python", "toml", "yaml", "markdown"}
+			local alreadyinstalled = require("nvim-treesitter.config").get_installed()
+			local parserstoinstall = vim.iter(ensureinstalled)
+				:filter(function(parser)
+				return not vim.tbl_contains(alreadyinstalled, parser)
+				end)
+				:totable()
+			require('nvim-treesitter').install(parserstoinstall)
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
+		init = function()
+			-- Disable entire built-in ftplugin mappings to avoid conflicts.
+			-- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
+			vim.g.no_plugin_maps = true
+			-- Or, disable per filetype (add as you like)
+			-- vim.g.no_python_maps = true
+			-- vim.g.no_ruby_maps = true
+			-- vim.g.no_rust_maps = true
+			-- vim.g.no_go_maps = true
+		end,
+		config = function()
+		-- put your config here
+		end,
 	},
 	{
 		"folke/noice.nvim",
@@ -259,6 +290,13 @@ return {
 				ft = "markdown", 
 			},
 		},
+	},
+	{
+		"OXY2DEV/markview.nvim", 
+		lazy = false, 
+		preview = {
+			icon_provider = "devicons",
+		}
 	},
 
 }

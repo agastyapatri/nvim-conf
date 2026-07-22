@@ -76,14 +76,11 @@ require('lazy').setup({
 -- require("configs.tokyonight")
 -- require("configs.kanso")
 require("configs.retrobox")
-require("configs.treesitter")
 require("configs.toggleterm")
 require("configs.fzf-lua")
--- require("configs.nvim-tree")
 require("configs.neotree")
 require("configs.noice")
 require("configs.mason")
-
 
 --	KEYMAPS: tabs and splits
 vim.keymap.set({"n", "v", "i"}, "<C-n>", vim.cmd.tabnew)
@@ -132,18 +129,18 @@ vim.keymap.set("n", "<leader>ri", function()
 end)
 vim.lsp.handlers["$/progress"] = function() end
 
-
---	Measuring LSP startup time 
-local start_time = vim.loop.hrtime()
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local elapsed_ms = (vim.loop.hrtime() - start_time) / 1e6
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    print(string.format("LSP '%s' attached in: %.2f ms", client.name, elapsed_ms))
-  end,
-})
-
-
+--
+-- --	Measuring LSP startup time 
+-- local start_time = vim.loop.hrtime()
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--   callback = function(args)
+--     local elapsed_ms = (vim.loop.hrtime() - start_time) / 1e6
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--     print(string.format("LSP '%s' attached in: %.2f ms", client.name, elapsed_ms))
+--   end,
+-- })
+--
+--
 
 --	HIGHLIGHT ON YANK
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -154,6 +151,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	group = highlight_group,
 	pattern = '*',
 })
+
+
+
+
+
+
 
 if vim.g.neovide then
 	vim.o.guifont = "JetBrainsMono Nerd Font:h10"
@@ -174,4 +177,9 @@ if vim.g.neovide then
 	vim.g.neovide_refresh_rate = 120
 	vim.g.neovide_refresh_rate_idle = 5
 end
+
+
+
+
+
 
