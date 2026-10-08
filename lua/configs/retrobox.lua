@@ -1,13 +1,3 @@
-vim.cmd("colorscheme retrobox")
-vim.api.nvim_set_hl(0, "Cursor", {bg = '#00D203'})
-vim.opt.guicursor = {"i:block-Cursor"}
--- Change the background color of the completion menu
-vim.cmd('highlight Pmenu guibg=#1c1c1c')
--- Change the background color of the selected item
-vim.cmd('highlight PmenuSel guibg=#1c1c1c')
--- Customize floating window background (if used by your completion plugin)
-vim.cmd('highlight NormalFloat guibg=#1c1c1c')
-
 vim.g.terminal_color_0  = "#1d2021"  -- black
 vim.g.terminal_color_1  = "#cc241d"  -- red
 vim.g.terminal_color_2  = "#98971a"  -- green
@@ -24,4 +14,65 @@ vim.g.terminal_color_12 = "#83a598"  -- bright blue
 vim.g.terminal_color_13 = "#d3869b"  -- bright magenta
 vim.g.terminal_color_14 = "#8ec07c"  -- bright cyan
 vim.g.terminal_color_15 = "#ebdbb2"  -- bright white
+
+local retrobox_red = "#cc241d"
+local retrobox_red2 = "#ff5c57"
+local retrobox_black = "#1d2021"
+
+-- Load colorscheme first
+vim.cmd("colorscheme retrobox")
+
+-- Cursor
+vim.api.nvim_set_hl(0, "Cursor", {
+  bg = "#00D203",
+})
+
+vim.opt.guicursor = { "i:block-Cursor" }
+
+-- Noice
+vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", {
+  bg = retrobox_black,
+  fg = retrobox_red2
+})
+
+-- fzf-lua
+vim.api.nvim_set_hl(0, "FzfCustomStyle", {
+  bg = retrobox_black,
+  fg = retrobox_red2
+})
+
+require("fzf-lua").setup({
+  winopts = {
+    border = "rounded",
+  },
+  hls = {
+    border = "FzfCustomStyle",
+    preview_border = "FzfCustomStyle",
+    title = "FzfCustomStyle",
+    preview_title = "FzfCustomStyle",
+  },
+})
+
+-- blink.cmp
+vim.api.nvim_create_autocmd("User", {
+  pattern = "BlinkCmpMenuOpen",
+  callback = function()
+    vim.api.nvim_set_hl(0, "BlinkCmpMenu", {
+      bg = retrobox_black,
+    })
+
+    vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", {
+      bg = retrobox_black,
+    })
+
+    vim.api.nvim_set_hl(0, "BlinkCmpScrollBarGutter", {
+      bg = retrobox_black,
+    })
+
+    vim.api.nvim_set_hl(0, "BlinkCmpScrollBarThumb", {
+      bg = "#504945",
+    })
+  end,
+})
+
 

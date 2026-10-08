@@ -16,7 +16,11 @@ require('kanso').setup({
         theme = { zen = {}, pearl = {}, ink = {}, all = {} },
     },
     overrides = function(colors) -- add/modify highlights
-        return {}
+        return {
+			["@function"] = {bold = true}, 
+			["@function.builtin"] = {bold = true},
+			Function = {bold = true},
+		}
     end,
     theme = "zen",              -- Load "zen" theme
     background = {               -- map the value of 'background' option to a theme
@@ -34,47 +38,24 @@ vim.opt.guicursor = {"i:block-Cursor"}
 -- -- COLORS FOR KANSO ZEN
 local kanso_zen_red = "#c4746e"
 local kanso_zen_black = "#0d060c"
-vim.api.nvim_set_hl(0, "TelescopeBorder", {
-	bg = kanso_zen_black,
-	fg = kanso_zen_red,
-})
-vim.api.nvim_set_hl(0, "TelescopePreviewTitle", {
-	bg = kanso_zen_black,
-	fg = kanso_zen_red,
-})
-vim.api.nvim_set_hl(0, "TelescopePromptTitle", {
-	bg = kanso_zen_black,
-	fg = kanso_zen_red,
-})
-vim.api.nvim_set_hl(0, "TelescopeResultsTitle", {
-	bg = kanso_zen_black,
-	fg = kanso_zen_red,
-})
-
-local kanso_zen_red = "#c4746e"
-local kanso_zen_black = "#0d060c"
 vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", {
 	bg = kanso_zen_black,
 	fg = kanso_zen_red,
 })
 
-
-local kanso_zen_red = "#c4746e"
-local kanso_zen_black = "#0d060c"
-vim.api.nvim_set_hl(0, "TelescopeBorder", {
+vim.api.nvim_set_hl(0, "FzfLuaBorder", {
 	bg = kanso_zen_black,
 	fg = kanso_zen_red,
 })
-vim.api.nvim_set_hl(0, "TelescopePreviewTitle", {
+vim.api.nvim_set_hl(0, "FzfLuaTitle", {
 	bg = kanso_zen_black,
 	fg = kanso_zen_red,
 })
-vim.api.nvim_set_hl(0, "TelescopePromptTitle", {
+vim.api.nvim_set_hl(0, "FzfLuaPreviewBorder", {
 	bg = kanso_zen_black,
 	fg = kanso_zen_red,
 })
-vim.api.nvim_set_hl(0, "TelescopeResultsTitle", {
+vim.api.nvim_set_hl(0, "FzfLuaPreviewTitle", {
 	bg = kanso_zen_black,
 	fg = kanso_zen_red,
 })
-

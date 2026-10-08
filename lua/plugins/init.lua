@@ -200,7 +200,7 @@ return {
 				},
 				menu = {
 					border = "rounded",
-					winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
+					winhighlight ="Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None,CurSearch:None",
 				},
 			},
 			sources = {
