@@ -145,27 +145,10 @@ return {
 			local alreadyinstalled = require("nvim-treesitter.config").get_installed()
 			local parserstoinstall = vim.iter(ensureinstalled)
 				:filter(function(parser)
-				return not vim.tbl_contains(alreadyinstalled, parser)
+					return not vim.tbl_contains(alreadyinstalled, parser)
 				end)
 				:totable()
 			require('nvim-treesitter').install(parserstoinstall)
-		end,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		branch = "main",
-		init = function()
-			-- Disable entire built-in ftplugin mappings to avoid conflicts.
-			-- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
-			vim.g.no_plugin_maps = true
-			-- Or, disable per filetype (add as you like)
-			-- vim.g.no_python_maps = true
-			-- vim.g.no_ruby_maps = true
-			-- vim.g.no_rust_maps = true
-			-- vim.g.no_go_maps = true
-		end,
-		config = function()
-		-- put your config here
 		end,
 	},
 	{
@@ -257,23 +240,23 @@ return {
 		---@module "csvview"
 		---@type CsvView.Options
 		opts = {
-		parser = { comments = { "#", "//" } },
-		keymaps = {
-		  -- Text objects for selecting fields
-		  textobject_field_inner = { "if", mode = { "o", "x" } },
-		  textobject_field_outer = { "af", mode = { "o", "x" } },
-		  -- Excel-like navigation:
-		  -- Use <Tab> and <S-Tab> to move horizontally between fields.
-		  -- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
-		  -- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
-		  jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
-		  jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
-		  jump_next_row = { "<Enter>", mode = { "n", "v" } },
-		  jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
-		},
+			parser = { comments = { "#", "//" } },
+			keymaps = {
+				-- Text objects for selecting fields
+				textobject_field_inner = { "if", mode = { "o", "x" } },
+				textobject_field_outer = { "af", mode = { "o", "x" } },
+				-- Excel-like navigation:
+				-- Use <Tab> and <S-Tab> to move horizontally between fields.
+				-- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
+				-- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
+				jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
+				jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
+				jump_next_row = { "<Enter>", mode = { "n", "v" } },
+				jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+			},
 		},
 		cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
-		},
+	},
 
 	{
 		"folke/snacks.nvim", 
@@ -291,4 +274,4 @@ return {
 			},
 		},
 	},
-}
+	}

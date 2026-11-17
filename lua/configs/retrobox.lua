@@ -16,7 +16,8 @@ local retrobox_bright_blue = "#83a598"  -- bright blue
 local retrobox_bright_magenta = "#d3869b"  -- bright magenta
 local retrobox_bright_cyan = "#8ec07c"  -- bright cyan
 local retrobox_bright_white = "#ebdbb2"  -- bright white
-local main_UI_accent = retrobox_bright_blue
+-- local main_UI_accent = retrobox_bright_blue
+local main_UI_accent = retrobox_magenta
 vim.g.terminal_color_0  = retrobox_black
 vim.g.terminal_color_1  = "#cc241d"  -- red
 vim.g.terminal_color_2  = "#98971a"  -- green
@@ -35,8 +36,20 @@ vim.g.terminal_color_14 = "#8ec07c"  -- bright cyan
 vim.g.terminal_color_15 = "#ebdbb2"  -- bright white
 
 
+--	making comments italic
+vim.api.nvim_create_autocmd('ColorScheme', {
+	pattern = 'retrobox', 
+	callback = function()
+		vim.api.nvim_set_hl(0, 'Comment', {fg = retrobox_bright_black, italic = true})
+	end,
+})
+
+
+
+
 -- Load colorscheme first
-vim.cmd("colorscheme retrobox")
+vim.cmd.colorscheme('retrobox')
+
 
 -- Cursor
 vim.api.nvim_set_hl(0, "Cursor", {
@@ -99,6 +112,14 @@ vim.api.nvim_set_hl(0, "LazyNormal", {bg=retrobox_black})
 vim.api.nvim_set_hl(0, "Normal", {fg = retrobox_bright_white, bg = retrobox_black})
 vim.api.nvim_set_hl(0, "TermBg", {bg = retrobox_black})
 vim.api.nvim_set_hl(0, "WinSeparator", { fg = main_UI_accent, bg = main_UI_accent })
+vim.api.nvim_set_hl(0, "RetroboxDiagnosticPopupBg", { fg = retrobox_bright_red, bg = retrobox_black })
+vim.api.nvim_set_hl(0, "RetroboxDiagnosticPopupBorder", { fg = retrobox_white, bg = retrobox_black })
+vim.diagnostic.config({
+	float = {
+		border = "rounded", 
+		winhighlight = "NormalFloat:RetroboxDiagnosticPopupBg, FloatBorder:RetroboxDiagnosticPopupBorder"
+	},
+})
 
 
 

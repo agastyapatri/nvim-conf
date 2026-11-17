@@ -23,11 +23,12 @@ vim.o.updatetime = 50
 vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
-vim.opt.shell = "/bin/bash"
+vim.opt.shell = "/bin/zsh"
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set('n', '<C-z>', '<Nop>', { noremap = true, silent = true })
+
 
 -- DISABLING UNUSED BUILTINS 
 local disabled_builtins = {
@@ -106,7 +107,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'LSP Code Actions' })
 
 -- ENABLING LSP SERVERS ; TAKE A LOOK AT ~/.CONFIG/NVIM/LSP FOR MORE INFO 
-vim.lsp.enable({'clangd', 'lua_ls', 'marksman', 'neocmakelsp', 'ruff',  'ty', 'taplo', 'yamlls', 'jsonls', 'neocmakelsp'})
+vim.lsp.enable({'clangd', 'lua_ls', 'marksman', 'neocmakelsp', 'ruff',  'ty', 'taplo', 'yamlls', 'jsonls', 'neocmakelsp', 'tinymist'})
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.py",
     callback = function()
